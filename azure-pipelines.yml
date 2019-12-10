@@ -24,7 +24,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
-    versioningScheme: 'off'
+    versioningScheme: 'byBuildNumber'
 - task: DotNetCoreCLI@2
   displayName: 'Push packages to Artifacts'
   inputs:
