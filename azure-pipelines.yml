@@ -26,7 +26,12 @@ steps:
     packagesToPack: '**/*.csproj'
     versioningScheme: 'off'
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet push'
+  displayName: 'Push packages to Artifacts'
   inputs:
     command: push
     publishVstsFeed: '59b5b7cf-d452-4b81-a91a-52748e3a0b7b'
+- task: DotNetCoreCLI@2
+  displayName: 'Publish web project '
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
