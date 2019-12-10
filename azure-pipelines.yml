@@ -34,14 +34,21 @@ steps:
     command: push
     publishVstsFeed: '59b5b7cf-d452-4b81-a91a-52748e3a0b7b'
 - task: DotNetCoreCLI@2
-  displayName: 'Publish web project '
+  displayName: 'Publish web project'
   inputs:
     command: 'publish'
     publishWebProjects: true
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
-# Takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
+# Delete folders, or files matching a pattern
+- task: DeleteFiles@1
+  displayName: 'Delete nuget packages from staging directory'
+  inputs:
+    SourceFolder: '$(Build.ArtifactStagingDirectory)'
+    Contents: '*.nupkg'
+# Publish Web.zip for release
 - task: PublishBuildArtifacts@1
+  displayName: 'Publish build artifacts'
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'eShopOnWeb'
