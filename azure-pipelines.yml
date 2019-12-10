@@ -30,6 +30,7 @@ steps:
   inputs:
     command: push
     publishVstsFeed: '59b5b7cf-d452-4b81-a91a-52748e3a0b7b'
+    arguments: '--skip-duplicate'
 - task: DotNetCoreCLI@2
   displayName: 'Publish web project '
   inputs:
